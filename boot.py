@@ -8,9 +8,9 @@ def do_connect():
         sta_if.active(True)
         sta_if.connect(config.WIFI_SSID, config.WIFI_PASSWD)
 
-        #sta_if.connect('TP-Link_1AA8', '64862583')
+        # sta_if.connect('TP-Link_1AA8', '64862583')
         while not sta_if.isconnected():
-            print('connecting...')
+            print('...')
     print('network config:', sta_if.ipconfig('addr4'))
     
 do_connect()
