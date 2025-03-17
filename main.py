@@ -3,6 +3,8 @@ from machine import Pin
 # boot.py -- run on boot-up
 import socket
 
+# https://docs.micropython.org/en/latest/library/socket.html
+
 def socket_connect():
     addr_info = socket.getaddrinfo("towel.blinkenlights.nl", 23)
     addr = addr_info[0][-1]
