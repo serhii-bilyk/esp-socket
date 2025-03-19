@@ -25,3 +25,9 @@ You can use [PyMakr](https://docs.pycom.io/gettingstarted/software/vscode/) exte
 Use this scrip to connect via cmd:
 
 `picocom /dev/ttyUSB0 -b9600`
+
+# HTTP Server
+
+ESP started a HTTP server which you can find in `http_server` folder. Please be aware that you should be connected to the same WiFi. After server is started you can go to an IP which you can find in logs
+
+`network config: ('192.168.0.104', '255.255.255.0')`
