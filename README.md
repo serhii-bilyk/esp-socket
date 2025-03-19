@@ -31,3 +31,5 @@ Use this scrip to connect via cmd:
 ESP started a HTTP server which you can find in `http_server` folder. Please be aware that you should be connected to the same WiFi. After server is started you can go to an IP which you can find in logs
 
 `network config: ('192.168.0.104', '255.255.255.0')`
+
+In `public` folder you will find an html document which is served
