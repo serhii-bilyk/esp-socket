@@ -84,16 +84,26 @@
 
     <footer></footer>
     <script>
+      let isLoading = false;
       const button = document.getElementById("button");
-      button.addEventListener("click", () => {
+      button.addEventListener("click", async () => {
+        if (isLoading) {
+          return;
+        }
         const inputData = document.getElementById("wifi_name");
         const inputValue = inputData.value;
+        isLoading = true;
         fetch("/save", {
           method: "POST",
-          body: JSON.stringify({ data: inputValue }),
+          body: "JSON.stringify({ data: inputValue })",
           headers: {
             "Content-Type": "application/json",
           },
+        }).then((response) => {
+          isLoading = false;
+          if (response.ok) {
+            console.log("Data saved");
+          }
         });
       });
     </script>

@@ -140,24 +140,8 @@ class HttpServer(object):
 
     def parse_post_data(self, request):
         """ Handles POST requests and parses the body """
-        lines = request.split("\r\n")
-        # Parse headers (simple version)
-        headers = {line.split(":")[0]: line.split(":")[1].strip() for line in lines if ":" in line}
-        print("start to parse post data")
-        # Get the content length
-        content_length = int(headers.get("Content-Length", 0))
-        print(content_length)
-        # Read the POST body if there is one
-        body = ""
-        if content_length > 0:
-            try:
-                body = self._connect.recv(1024)
-            except Exception as e:
-                print("Error reading POST body", e)
-                
-        print(body)
-        # Assuming it's form data or JSON, you can process the body here
-        return body  # Return the body for now, further processing can be added
+        # TODO parse POST payload
+        print("Request:", request)
 
     def add_post_route(self, path, handler):
         """ Add new route for POST method """
