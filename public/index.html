@@ -86,10 +86,15 @@
     <script>
       const button = document.getElementById("button");
       button.addEventListener("click", () => {
-        const inputData = document.getElementById("input_data");
+        const inputData = document.getElementById("wifi_name");
         const inputValue = inputData.value;
-        console.log(inputValue);
-        console.log(inputValue);
+        fetch("/save", {
+          method: "POST",
+          body: JSON.stringify({ data: inputValue }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
       });
     </script>
   </body>
