@@ -24,4 +24,4 @@ You can use [PyMakr](https://docs.pycom.io/gettingstarted/software/vscode/) exte
 
 Use this scrip to connect via cmd:
 
-`picocom /dev/ttyUSB0 -b115200`
+`picocom /dev/ttyUSB0 -b9600`
