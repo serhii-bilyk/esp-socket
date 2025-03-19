@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple HTML Boilerplate</title>
+    <style>
+      body {
+        background-color: rgb(33, 33, 33);
+      }
+      header {
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 204, 0);
+        text-align: center;
+        padding: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .input {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 15px;
+        border: unset;
+        height: 20px;
+        padding: 10px;
+      }
+
+      .button {
+        background-color: rgb(255, 204, 0);
+        color: rgb(33, 33, 33);
+        padding: 12px;
+        border: none;
+        cursor: pointer;
+        border-radius: 12px;
+      }
+
+      .flex {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .card {
+        background-color: rgb(51, 51, 48);
+        color: rgb(236, 236, 236);
+        border-radius: 15px;
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Вільне небо</h1>
+    </header>
+
+    <main>
+      <div class="flex card">
+        <div class="flex">
+          <label for="wifi_name">Введіть WiFi назву</label>
+          <input
+            class="input"
+            id="wifi_name"
+            name="wifi_name"
+            placeholder="Enter your WiFi name"
+          />
+        </div>
+        <div class="flex">
+          <label for="wifi_name">Введіть WiFi password</label>
+          <input
+            class="input"
+            id="wifi_password"
+            name="wifi_password"
+            placeholder="Enter your WiFi password"
+          />
+        </div>
+        <div>
+          <button class="button" id="button">Зберегти</button>
+        </div>
+      </div>
+    </main>
+
+    <footer></footer>
+    <script>
+      const button = document.getElementById("button");
+      button.addEventListener("click", () => {
+        const inputData = document.getElementById("input_data");
+        const inputValue = inputData.value;
+        console.log(inputValue);
+        console.log(inputValue);
+      });
+    </script>
+  </body>
+</html>

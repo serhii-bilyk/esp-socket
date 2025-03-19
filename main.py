@@ -1,43 +1,39 @@
 import socket
 import network
+import sys
 
-def client_program():
-    host = '192.168.0.102'  # as both code is running on same pc
-    port = 3002  # socket server port number
+sys.path.append(os.path.join(os.path.dirname(__file__), 'http_server'))
 
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # instantiate
-    client_socket.connect((host, port))  # connect to the server
+from http_server import HttpServer
+import utils
 
-    message = input(" -> ")  # take input
+server = HttpServer()
 
-    while message.lower().strip() != 'bye':
-        client_socket.send(message.encode())  # send message
-        data = client_socket.recv(1024).decode()  # receive response
 
-        print('Received from server: ' + data)  # show in terminal
+def index(request):
+    print("Request received")
+    server.send_html('./public/index.html')
 
-        message = input(" -> ")  # again take input
 
-    client_socket.close()  # close the connection
+def stop(request):
+    print("Stopping server")
+    server.stop()
 
-# client_program()
 
-def wifi():
-    
-    # Create an access point (AP) instance
-    ap = network.WLAN(network.AP_IF)
+def set_cookies(request):
+    cookies_header = utils.create_cookie("name", "value", expires="Sat, 01-Jan-2030 00:00:00 GMT")
+    utils.send_response(server, "OK", extend_headers=[cookies_header])
 
-    # Activate the access point
-    ap.active(True)
 
-    # Set the SSID and password
-    ssid = 'ESP8266-AP'
-    password = '123456789'
+def get_cookies(request):
+    cookies = utils.get_cookies(request)
+    utils.send_response(server, str(cookies))
 
-    # Configure the access point
-    ap.config(essid=ssid, password=password)
 
-    # Print the IP address of the access point
-    print('Access Point started with IP:', ap.ifconfig()[0])
-    
-wifi()
+server.add_route("/", index)
+server.add_route("/stop", stop)
+server.add_route("/set_cookies", set_cookies)
+server.add_route("/get_cookies", get_cookies)
+
+server.start()
+ 
