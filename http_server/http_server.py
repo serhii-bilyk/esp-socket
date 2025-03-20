@@ -138,11 +138,6 @@ class HttpServer(object):
         except Exception as e:
             self._internal_error(e)
 
-    def parse_post_data(self, request):
-        """ Handles POST requests and parses the body """
-        # TODO parse POST payload
-        print("Request:", request)
-
     def add_post_route(self, path, handler):
         """ Add new route for POST method """
         self.add_route(path, handler, method="POST")

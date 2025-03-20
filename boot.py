@@ -13,4 +13,3 @@ def do_connect():
     print('network config:', sta_if.ipconfig('addr4'))
     
 do_connect()
- 

@@ -25,7 +25,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
-
+import json
 import re
 
 """ HTTP response codes """
@@ -146,11 +146,26 @@ def get_request_post_params(request):
     request_method = get_request_method(request)
     if request_method != "POST":
         return None
+
+    # Extract the body from the request (everything after the double CRLF)
     match = re.search("\r\n\r\n(.+)", request)
     if match is None:
         return {}
-    query_string = match.group(1)
-    return parse_query_string(query_string)
+
+    # Extract the POST data
+    post_data = match.group(1)
+
+    # Check if the POST data looks like JSON (e.g., starts with '{' and ends with '}')
+    if post_data.startswith('{') and post_data.endswith('}'):
+        try:
+            # Try to parse it as JSON
+            return json.loads(post_data)
+        except ValueError:
+            # If JSON is invalid, fall back to URL-encoded parsing
+            pass
+
+    # If JSON parsing fails or data is not JSON, try parsing as URL-encoded data
+    return parse_query_string(post_data)
 
 
 def unquote(string):
