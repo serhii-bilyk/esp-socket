@@ -163,7 +163,7 @@ def get_request_post_params(request):
         except ValueError:
             # If JSON is invalid, fall back to URL-encoded parsing
             pass
-
+    print("POST", post_data)
     # If JSON parsing fails or data is not JSON, try parsing as URL-encoded data
     return parse_query_string(post_data)
 

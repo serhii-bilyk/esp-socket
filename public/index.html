@@ -74,7 +74,7 @@
           />
         </div>
         <div class="flex">
-          <label for="wifi_name">Введіть WiFi password</label>
+          <label for="wifi_password">Введіть WiFi password</label>
           <input
             class="input"
             id="wifi_password"
@@ -96,17 +96,25 @@
         if (isLoading) {
           return;
         }
-        const inputData = document.getElementById("wifi_name");
-        const inputValue = inputData.value;
+        const wifiName = document.getElementById("wifi_name").value;
+        const wifiPassword = document.getElementById("wifi_password").value;
+
         isLoading = true;
+        button.innerText = "...";
+
         fetch("/save", {
           method: "POST",
-          body: '{"a":1}',
+          body: JSON.stringify({
+            wifiName,
+            wifiPassword,
+          }),
           headers: {
             "Content-Type": "application/json",
           },
         }).then((response) => {
           isLoading = false;
+          button.innerText = "Зберегти";
+
           if (response.ok) {
             console.log("Data saved");
           }

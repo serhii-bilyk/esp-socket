@@ -4,6 +4,7 @@ import sys
 
 from http_server.http_server import HttpServer
 from http_server.utils import get_request_post_params
+from http_server.file_sys import save_data_to_file
 
 server = HttpServer()
 
@@ -21,6 +22,7 @@ def post_handler(request):
     """ Handle POST request """   
     post_data = get_request_post_params(request)
     print(post_data)
+    save_data_to_file(post_data)
     server.send("HTTP/1.0 200 OK\r\n")
     server.send("Content-Type: text/plain\r\n\r\n")
     server.send("POST Data received!")
