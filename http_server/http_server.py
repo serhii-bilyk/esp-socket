@@ -2,7 +2,7 @@ import re
 import socket
 import sys
 import io
-from file_sys import save_data_to_file
+ 
 
 
 class HttpServer(object):
@@ -20,7 +20,6 @@ class HttpServer(object):
 
     def start(self):
         """ Start server """
-        save_data_to_file({"name": "John", "age": 30})
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self._sock.bind((self._host, self._port))
